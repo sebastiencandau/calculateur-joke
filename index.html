@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Votre style CSS ici */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .calculator {
+  max-height: 800px;
+  overflow: auto; /* Ajout de cette propriété pour activer le défilement */
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+    button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    input{
+        width: 3em;
+        margin-bottom: 1em;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+  <title>Calculateur de Relations</title>
+</head>
+<body>
+
+  <div class="calculator">
+    <h1>Calculateur de Relations</h1>
+
+    <h2>Relations homo</h2>
+
+    <label for="x1">Nombre de personnes embrassées   :</label>
+    <input type="number" id="x1" required>
+
+    <label for="intensity1">Intensité de la relation (de 1 à 10)   :</label>
+    <input type="number" id="intensity1" min="1" max="10" required>
+
+    <label for="time1">Somme des temps de chaque relation en mois pour chaque relation supérieure à 1 mois :</label>
+    <input type="number" id="time1" required>
+
+    <label for="context1">Contexte social favorable (de 1 à 10)   :</label>
+    <input type="number" id="context1" min="1" max="10" required>
+
+    <label for="varieties1">Type de relation (1 pour homo) :</label>
+    <input type="number" id="varieties1" min="1" max="1" required>
+
+    <h2>Relations hétéros</h2>
+
+    <label for="x2">Nombre de personnes embrassées   :</label>
+    <input type="number" id="x2" required>
+
+    <label for="intensity2">Intensité de la relation (de 1 à 10)   :</label>
+    <input type="number" id="intensity2" min="1" max="10" required>
+
+    <label for="time2">Somme des temps de chaque relation en mois pour chaque relation supérieure à 1 mois  :</label>
+    <input type="number" id="time2" required>
+
+    <label for="context2">Contexte social favorable (de 1 à 10)   :</label>
+    <input type="number" id="context2" min="1" max="10" required>
+
+    <label for="varieties2">Type de relation (2 pour hétéro) :</label>
+    <input type="number" id="varieties2" min="2" max="2" required>
+
+    <div id="dynamicFields"></div>
+    
+    <button onclick="calculate()">Calculer</button>
+
+    <p id="result">Résultat :</p>
+  </div>
+
+  <script>
+    // Votre script JavaScript ici
+    function calculate() {
+      var x1 = parseFloat(document.getElementById('x1').value);
+      var intensity1 = parseFloat(document.getElementById('intensity1').value);
+      var time1 = parseFloat(document.getElementById('time1').value);
+      var context1 = parseFloat(document.getElementById('context1').value);
+
+      var x2 = parseFloat(document.getElementById('x2').value);
+      var intensity2 = parseFloat(document.getElementById('intensity2').value);
+      var time2 = parseFloat(document.getElementById('time2').value);
+      var context2 = parseFloat(document.getElementById('context2').value);
+
+      var result1 = (x1 * (intensity1 / x1) * time1 * (1 / context1 * 10) * 1).toFixed(2);
+      var result2 = (x2 * (intensity2 / x2) * time2 * (1 / context2 * 10) * 2).toFixed(2);
+
+      document.getElementById('result').innerHTML = "Résultat   : " + result1 + "<br>Résultat   : " + result2;
+    }
+
+    // Fonction pour ajouter des champs d'entrée dynamiquement
+    function addDynamicFields() {
+      var x1 = document.getElementById('x1').value;
+      var dynamicFieldsContainer = document.getElementById('dynamicFields');
+      dynamicFieldsContainer.innerHTML = ""; // Effacer les champs existants
+
+      for (var i = 0; i < x1; i++) {
+        dynamicFieldsContainer.innerHTML += `
+          <label for="intensity_homo_${i + 1}">Intensité de la relation ${i + 1} (de 1 à 10) :</label>
+          <input type="number" id="intensity_homo_${i + 1}" min="1" max="10" required>
+        `;
+      }
+    }
+
+    // Appeler la fonction pour ajouter des champs dynamiques lorsque la valeur de x1 change
+    document.getElementById('x1').addEventListener('change', addDynamicFields);
+  </script>
+</body>
+</html>
