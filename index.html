@@ -7,24 +7,30 @@
     /* Votre style CSS ici */
     body {
       font-family: Arial, sans-serif;
+      background-image: url('https://media.istockphoto.com/id/1294275073/vector/valentines-day-and-wedding-background-design-of-watercolor-hearts-vector-illustration.jpg?s=612x612&w=0&k=20&c=PkuTze-gIFCodOOHkRNvNoci8Ihs3V2fE6Q8iczuRKE=');
       margin: 0;
       padding: 0;
-      display: flex;
       justify-content: center;
+      background-size: cover;
       align-items: center;
       height: 100vh;
       background-color: #f4f4f4;
     }
 
+    body h1 {
+      text-align: center;
+    }
+
     .calculator {
-  max-height: 800px;
+      margin-left: auto;
+      margin-right: auto;
+  max-height: 700px;
+  max-width: 800px;
   overflow: auto; /* Ajout de cette propriété pour activer le défilement */
-  text-align: center;
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
 }
 
 
@@ -55,90 +61,168 @@
       font-weight: bold;
       margin-top: 20px;
     }
+    .intensity-container-homo{
+      max-width: 1200px;
+      text-align: left;
+    }
+    .intensity-item{
+      flex: 1 0 21%; /* explanation below */
+
+    }
+    .result-section{
+      text-align: center;
+      max-width: 10em;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 1em;
+    }
   </style>
-  <title>Calculateur de Relations</title>
+  <title>Calculateur d'homosexualité</title>
 </head>
 <body>
+  <h1>Calculateur d'homosexualité</h1>
 
   <div class="calculator">
-    <h1>Calculateur de Relations</h1>
 
     <h2>Relations homo</h2>
 
     <label for="x1">Nombre de personnes embrassées   :</label>
     <input type="number" id="x1" required>
 
-    <label for="intensity1">Intensité de la relation (de 1 à 10)   :</label>
-    <input type="number" id="intensity1" min="1" max="10" required>
+    <div class='intensity-container-homo'></div>
 
     <label for="time1">Somme des temps de chaque relation en mois pour chaque relation supérieure à 1 mois :</label>
+    <small>Par exemple, si tu as été en couple 2 mois avec l'invidu 1 et 3 mois avec l'individu 4 et que les autres relations n'ont été que des coups d'un soir, la valeur sera égale à 1 + 3 donc 4</small>
+    <br>
+    <br>
     <input type="number" id="time1" required>
 
     <label for="context1">Contexte social favorable (de 1 à 10)   :</label>
+    <small>Sur une échelle de 1 à 10, à combien les relations homosexuelles sont elles acceptées par votre entourage (famille, amis, etc)</small>
+    <br>
+    <br>
     <input type="number" id="context1" min="1" max="10" required>
 
-    <label for="varieties1">Type de relation (1 pour homo) :</label>
-    <input type="number" id="varieties1" min="1" max="1" required>
+    <label for="varieties1">Variétés d'expériences de 1 à 3 (embrassé, prélis, sexe) :</label>
+    <input type="number" id="varieties1" min="1" max="3" required>
 
     <h2>Relations hétéros</h2>
 
     <label for="x2">Nombre de personnes embrassées   :</label>
     <input type="number" id="x2" required>
 
-    <label for="intensity2">Intensité de la relation (de 1 à 10)   :</label>
-    <input type="number" id="intensity2" min="1" max="10" required>
+    <div class='intensity-container-hetero'></div>
 
     <label for="time2">Somme des temps de chaque relation en mois pour chaque relation supérieure à 1 mois  :</label>
+    <small>Par exemple, si tu as été en couple 2 mois avec l'invidu 1 et 3 mois avec l'individu 4 et que les autres relations n'ont été que des coups d'un soir, la valeur sera égale à 1 + 3 donc 4</small>
+    <br>
+    <br>
     <input type="number" id="time2" required>
 
     <label for="context2">Contexte social favorable (de 1 à 10)   :</label>
+    <small>Sur une échelle de 1 à 10, à combien les relations hétérosexuelles sont elles acceptées par votre entourage (famille, amis, etc)</small>
+    <br>
+    <br>
     <input type="number" id="context2" min="1" max="10" required>
 
-    <label for="varieties2">Type de relation (2 pour hétéro) :</label>
-    <input type="number" id="varieties2" min="2" max="2" required>
+    <label for="varieties2">Variétés d'expériences de 1 à 3 (bisou, prélis, sexe) :</label>
+    <input type="number" id="varieties2" min="1" max="3" required>
 
     <div id="dynamicFields"></div>
-    
-    <button onclick="calculate()">Calculer</button>
+  </div>
 
+  <div class="result-section">
+    <button onclick="calculate()">Calculer</button>
     <p id="result">Résultat :</p>
   </div>
+
 
   <script>
     // Votre script JavaScript ici
     function calculate() {
-      var x1 = parseFloat(document.getElementById('x1').value);
-      var intensity1 = parseFloat(document.getElementById('intensity1').value);
-      var time1 = parseFloat(document.getElementById('time1').value);
-      var context1 = parseFloat(document.getElementById('context1').value);
+  var x1 = parseFloat(document.getElementById('x1').value);
+  var time1 = parseFloat(document.getElementById('time1').value);
+  var context1 = parseFloat(document.getElementById('context1').value);
+  var varieties1 = parseFloat(document.getElementById('varieties1').value);
 
-      var x2 = parseFloat(document.getElementById('x2').value);
-      var intensity2 = parseFloat(document.getElementById('intensity2').value);
-      var time2 = parseFloat(document.getElementById('time2').value);
-      var context2 = parseFloat(document.getElementById('context2').value);
+  var x2 = parseFloat(document.getElementById('x2').value);
+  var time2 = parseFloat(document.getElementById('time2').value);
+  var context2 = parseFloat(document.getElementById('context2').value);
+  var varieties2 = parseFloat(document.getElementById('varieties2').value);
 
-      var result1 = (x1 * (intensity1 / x1) * time1 * (1 / context1 * 10) * 1).toFixed(2);
-      var result2 = (x2 * (intensity2 / x2) * time2 * (1 / context2 * 10) * 2).toFixed(2);
+  var intensitySum1 = 0;
+  for (var i = 1; i <= x1; i++) {
+    intensitySum1 += parseFloat(document.getElementById(`intensity_homo_${i}`).value);
+  }
 
-      document.getElementById('result').innerHTML = "Résultat   : " + result1 + "<br>Résultat   : " + result2;
-    }
+  var intensitySum2 = 0;
+  for (var j = 1; j <= x2; j++) {
+    intensitySum2 += parseFloat(document.getElementById(`intensity_hetero_${j}`).value);
+  }
+
+  console.log("x1:", x1);
+  console.log("time1:", time1);
+  console.log("context1:", context1);
+  console.log("varieties1:", varieties1);
+  console.log("intensitySum1:", intensitySum1);
+
+  console.log("x2:", x2);
+  console.log("time2:", time2);
+  console.log("context2:", context2);
+  console.log("varieties2:", varieties2);
+  console.log("intensitySum2:", intensitySum2);
+
+  var result1 = (x1 * (intensitySum1 / x1) * (time1 !== 0 ? time1 : 1) * (1 / (context1 * 10)) * varieties1);
+
+  var result2 = (x2 * (intensitySum2 / x2) * (time2 !== 0 ? time2 : 1) * (2 / (context2 * 10)) * varieties2);
+
+  var result = result1 / result2;
+
+  result = Math.min(result, 1);
+
+  console.log("Tu es pd à:", result.toFixed(2) + '%');
+
+  document.getElementById('result').innerHTML = "Tu es pd à : " + result.toFixed(5) * 100 + '%';
+}
+
+
+
 
     // Fonction pour ajouter des champs d'entrée dynamiquement
-    function addDynamicFields() {
+    function addDynamicFieldsX1() {
       var x1 = document.getElementById('x1').value;
       var dynamicFieldsContainer = document.getElementById('dynamicFields');
       dynamicFieldsContainer.innerHTML = ""; // Effacer les champs existants
 
       for (var i = 0; i < x1; i++) {
-        dynamicFieldsContainer.innerHTML += `
-          <label for="intensity_homo_${i + 1}">Intensité de la relation ${i + 1} (de 1 à 10) :</label>
-          <input type="number" id="intensity_homo_${i + 1}" min="1" max="10" required>
-        `;
-      }
+        document.getElementsByClassName('intensity-container-homo')[0].innerHTML += `
+  <div class='intensity-item'>
+  <label for="intensity_homo_${i + 1}">Intensité de la relation ${i + 1} (de 1 à 10) :</label>
+  <input type="number" id="intensity_homo_${i + 1}" min="1" max="10" required>
+  <div>
+`;
+  }
+}
+
+function addDynamicFieldsX2() {
+      var x1 = document.getElementById('x2').value;
+      var dynamicFieldsContainer = document.getElementById('dynamicFields');
+      dynamicFieldsContainer.innerHTML = ""; // Effacer les champs existants
+
+      for (var i = 0; i < x1; i++) {
+        document.getElementsByClassName('intensity-container-hetero')[0].innerHTML += `
+  <div class='intensity-item'>
+  <label for="intensity_hetero_${i + 1}">Intensité de la relation ${i + 1} (de 1 à 10) :</label>
+  <input type="number" id="intensity_hetero_${i + 1}" min="1" max="10" required>
+  <div>
+`;
+
     }
+  }
 
     // Appeler la fonction pour ajouter des champs dynamiques lorsque la valeur de x1 change
-    document.getElementById('x1').addEventListener('change', addDynamicFields);
+    document.getElementById('x1').addEventListener('change', addDynamicFieldsX1);
+    document.getElementById('x2').addEventListener('change', addDynamicFieldsX2);
   </script>
 </body>
 </html>
