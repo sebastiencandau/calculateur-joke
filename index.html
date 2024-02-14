@@ -79,10 +79,11 @@ input::-webkit-inner-spin-button {
 }
     .result-section{
       text-align: center;
-      max-width: 10em;
+      max-width: 15em;
       margin-left: auto;
       margin-right: auto;
       margin-top: 1em;
+      margin-bottom: 3em;
     }
   </style>
   <title>Calculateur d'homosexualité</title>
@@ -142,6 +143,7 @@ input::-webkit-inner-spin-button {
   <div class="result-section">
     <button onclick="calculate()">Calculer</button>
     <p id="result">Résultat :</p>
+    <p id="message"></p>
   </div>
 
 
@@ -190,7 +192,25 @@ input::-webkit-inner-spin-button {
 
   console.log("Tu es pd à:", result.toFixed(2) + '%');
 
+  var messageElement = document.getElementById('message');
+      var message = '';
+
+      if (result < 0.01) {
+        message = 'Tu es hétéro gros !! 👍';
+      } else if (result < 0.1) {
+        message = 'On va dire que tu es curieux 🧐';
+      } else if (result < 0.5) {
+        message = 'Tu te cherches encore mais t presque pd hein 😬';
+      } else if (result < 1) {
+        message = 'Tu es le bi originel 👌';
+      } else {
+        message = 'T carrément pd y a aucun doute 🤣';
+      }
+
   document.getElementById('result').innerHTML = "Tu es pd à : " + result.toFixed(5) * 100 + '%';
+
+  messageElement.textContent = message;
+
 }
 
 
