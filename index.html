@@ -69,6 +69,14 @@
       flex: 1 0 21%; /* explanation below */
 
     }
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+    input[type=number] {
+  -moz-appearance: textfield;
+}
     .result-section{
       text-align: center;
       max-width: 10em;
@@ -87,7 +95,7 @@
     <h2>Relations homo</h2>
 
     <label for="x1">Nombre de personnes embrassées   :</label>
-    <input type="number" id="x1" required>
+    <input type="number" id="x1" required >
 
     <div class='intensity-container-homo'></div>
 
@@ -190,8 +198,9 @@
 
     // Fonction pour ajouter des champs d'entrée dynamiquement
     function addDynamicFieldsX1() {
+      
       var x1 = document.getElementById('x1').value;
-      var dynamicFieldsContainer = document.getElementById('dynamicFields');
+      var dynamicFieldsContainer = document.getElementsByClassName('intensity-container-homo')[0];
       dynamicFieldsContainer.innerHTML = ""; // Effacer les champs existants
 
       for (var i = 0; i < x1; i++) {
@@ -205,11 +214,12 @@
 }
 
 function addDynamicFieldsX2() {
-      var x1 = document.getElementById('x2').value;
-      var dynamicFieldsContainer = document.getElementById('dynamicFields');
-      dynamicFieldsContainer.innerHTML = ""; // Effacer les champs existants
 
-      for (var i = 0; i < x1; i++) {
+      var x2 = document.getElementById('x2').value;
+      var dynamicFieldsContainer = document.getElementsByClassName('intensity-container-hetero')[0];
+      dynamicFieldsContainer.innerHTML = ""; // Effacer les champs existants 
+
+      for (var i = 0; i < x2; i++) {
         document.getElementsByClassName('intensity-container-hetero')[0].innerHTML += `
   <div class='intensity-item'>
   <label for="intensity_hetero_${i + 1}">Intensité de la relation ${i + 1} (de 1 à 10) :</label>
